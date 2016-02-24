@@ -26,11 +26,13 @@
     <script>
       var forma = new THREE.CylinderGeometry(1,1,5,20);
       var material = new THREE.MeshDepthMaterial();
-      var esfera = new THREE.Mesh( forma, material );
-      escena.add( esfera );
+      var cilindro = new THREE.Mesh( forma, material );
+      escena.add( cilindro );
       function render() 
       {
         requestAnimationFrame( render );
+        cilindro.rotation.x+=0.1;
+        cilindro.rotation.y+=0.1;
         renderer.render( escena , camara );
       }
       render();
