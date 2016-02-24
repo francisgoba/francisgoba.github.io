@@ -24,7 +24,7 @@
       document.body.appendChild(renderer.domElement); 
     </script>
     <script>
-      var forma = new THREE.TorusGeometry(5,6);
+      var forma = new THREE.TorusGeometry(10,3,16,100);
       var material = new THREE.MeshDepthMaterial();
       var torus = new THREE.Mesh( forma, material );
       escena.add( torus );
