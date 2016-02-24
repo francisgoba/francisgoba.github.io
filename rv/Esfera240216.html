@@ -24,7 +24,7 @@
       document.body.appendChild(renderer.domElement); 
     </script>
     <script>
-      var forma = new THREE.SphereGeometry(1);
+      var forma = new THREE.SphereGeometry(1,1,1);
       var material = new THREE.MeshNormalMaterial();
       var esfera = new THREE.Mesh( forma, material );
       escena.add( esfera );
