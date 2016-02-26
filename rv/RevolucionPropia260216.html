@@ -24,11 +24,8 @@
       document.body.appendChild(renderer.domElement); 
     </script>
     <script>
-      var puntos=[4];
-      puntos[1].push(new THREE.Vector2(50,0));
-      puntos[2].push(new THREE.Vector2(30,30));
-      puntos[3].push(new THREE.Vector2(50,60));
-      puntos[4].push(new THREE.Vector2(60,60));
+      var puntos=[];
+      puntos.push(new THREE.Vector2(50,0),(30,30),(50,60),(60,60));
     
       var forma = new THREE.LatheGeometry(puntos);
       
