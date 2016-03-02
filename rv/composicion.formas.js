@@ -2,7 +2,7 @@ function setup() {
   
   //Se plantean las geometrias a usar
   
-  var esferaForma = new THREE.SphereGeometry(1);
+  var esferaForma = new THREE.SphereGeometry(1,50,50);
   var cilindroForma = new THREE.CylinderGeometry(0.5,0.5,4);
   
   //Para generar una forma combinada se requiere de las mallas para
