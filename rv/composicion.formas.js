@@ -8,9 +8,9 @@ function setup() {
   //Para generar una forma combinada se requiere de las mallas para
   //poder desplazar las formas en el espacion virtual
   
-  var esfera1 = new.THREE.Mesh(esferaForma);
-  var esfera2 = new.THREE.Mesh(esferaForma);
-  var cilindro = new.THREE.Mesh(cilindroForma);
+  var esfera1 = new THREE.Mesh(esferaForma);
+  var esfera2 = new THREE.Mesh(esferaForma);
+  var cilindro = new THREE.Mesh(cilindroForma);
   
   //Se desplazan las mallas
   
