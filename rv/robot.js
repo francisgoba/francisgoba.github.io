@@ -1,12 +1,17 @@
 function setup() {
   
   var esferaForma = new THREE.SphereGeometry(2,100,100);
+  var mediaesferaForma = new THREE.SphereGeometry( 1, 100, 50, 1*Math.PI/2, 2*Math.PI, Math.PI, Math.PI);
   
   var esfera1 = new THREE.Mesh(esferaForma);
+  var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
+  
+  mediaesfera1.position.y=2;
 
   var forma = new THREE.Geometry();
   
   THREE.GeometryUtils.merge(forma, esfera1);
+  THREE.GeometryUtils.merge(forma, mediaesfera1);
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
