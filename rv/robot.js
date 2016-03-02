@@ -1,6 +1,6 @@
 function setup() {
   
-  var esferaForma = new THREE.SphereGeometry(2,50,50);
+  var esferaForma = new THREE.SphereGeometry(2,100,100);
   
   var esfera1 = new THREE.Mesh(esferaForma);
 
