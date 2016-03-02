@@ -15,7 +15,7 @@ function setup() {
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
-  malla = new THREE.Mesh( forma );
+  malla = new THREE.Mesh( forma, material );
   
   escena = new THREE.Scene();
   escena.add( malla );
