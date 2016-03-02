@@ -8,6 +8,8 @@ function setup() {
   
   THREE.GeometryUtils.merge(forma, esfera1);
   
+  material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
+  
   malla = new THREE.Mesh( forma );
   
   escena = new THREE.Scene();
@@ -30,7 +32,7 @@ function loop() {
   renderer.render( escena, camara);
 }
 
-var escena, camara, render, malla;
+var escena, camara, render, malla, material;
 
 setup();
 loop();
