@@ -29,7 +29,7 @@ function setup() {
 
   malla.rotation.x +=Math.PI/2;
   cilindromalla.rotation.x +=Math.PI/2;
-  cilindromalla.position.y=3;
+  //cilindromalla.position.y=3;
   
   escena = new THREE.Scene();
   escena.add( malla );
