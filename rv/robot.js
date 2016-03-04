@@ -6,7 +6,7 @@ function setup() {
       puntos.push(new THREE.Vector2(1.175,2.4));
       puntos.push(new THREE.Vector2(0.95,2));
   var revo = new THREE.LatheGeometry(puntos,100); 
-  var cilindroForma = new THREE.CylinderGeometry(0.5,0.5,5,20);
+  var cilindroForma = new THREE.CylinderGeometry(0.1,0.1,5,20);
   
   materialcilindro = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
       
@@ -26,8 +26,9 @@ function setup() {
   
   cilindromalla = new THREE.Mesh( cilindroForma, materialcilindro );
   malla = new THREE.Mesh( forma, material );
-  
+
   malla.rotation.x +=Math.PI/2;
+  cilindromalla.rotation.x +=Math.PI/2;
   
   escena = new THREE.Scene();
   escena.add( malla );
