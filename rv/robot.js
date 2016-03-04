@@ -10,10 +10,15 @@ function setup() {
   var cilindroForma2 = new THREE.CylinderGeometry(0.02,0.02,0.5,100);
   
   var esfera1 = new THREE.Mesh(esferaForma);
+  var materialesfera = new THREE.MeshBasicMaterial( { color: 0xffffff } );
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
+  var materialmediaesfera1 = new THREE.MeshBasicMaterial( { color: 0xffffff } );
   var revomalla = new THREE.Mesh(revo);
+  var materialrevomalla = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   var cilindromalla = new THREE.Mesh( cilindroForma);
+  var materialcilindromalla = new THREE.MeshBasicMaterial( { color: 0xffffff } );
   var cilindromalla2 = new THREE.Mesh( cilindroForma2);
+  var materialcilindromalla2 = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 
   cilindromalla.position.y=3.85;
   cilindromalla.position.x=0.13;
@@ -29,9 +34,7 @@ function setup() {
   THREE.GeometryUtils.merge(forma, cilindromalla);
   THREE.GeometryUtils.merge(forma, cilindromalla2);
   
-  material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
-  
-  malla = new THREE.Mesh( forma, material );
+  malla = new THREE.Mesh( forma );
   
   escena = new THREE.Scene();
   escena.add( malla );
