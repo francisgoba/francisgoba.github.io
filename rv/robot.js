@@ -15,10 +15,10 @@ function setup() {
   var cilindromalla = new THREE.Mesh( cilindroForma);
   var cilindromalla2 = new THREE.Mesh( cilindroForma2);
 
-  cilindromalla.position.y=4;
-  cilindromalla.position.x=0.25;
+  cilindromalla.position.y=3.85;
+  cilindromalla.position.x=0.13;
   cilindromalla2.position.y=3.75;
-  cilindromalla2.position.x=-0.25;
+  cilindromalla2.position.x=-0.15;
   mediaesfera1.position.y=2.35;
 
   var forma = new THREE.Geometry();
