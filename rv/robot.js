@@ -1,7 +1,7 @@
 function setup() {
   
   var esferaForma = new THREE.SphereGeometry(2,100,100);
-  var mediaesferaForma = new THREE.SphereGeometry( 1, 100, 50, 1*Math.PI/2, 2*Math.PI, Math.PI, Math.PI);
+  var mediaesferaForma = new THREE.SphereGeometry( 1, 100, 50, 2*Math.PI, Math.PI/2, Math.PI, Math.PI);
   
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
