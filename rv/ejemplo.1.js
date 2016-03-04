@@ -32,7 +32,7 @@ function setup(){
 function loop(){
   requestAnimationFrame( loop );
   renderer.render( escena, camara);
-  if (Math.abs(piernaD.rotation.z) > 0.5.)
+  if (Math.abs(piernaD.rotation.z) > 0.5)
     step = step;
   piernaD.rotation.z+=step;
   piernaI.rotation.z-=step;
