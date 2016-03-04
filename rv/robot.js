@@ -3,8 +3,8 @@ function setup() {
   var esferaForma = new THREE.SphereGeometry(2,100,100);
   var mediaesferaForma = new THREE.SphereGeometry( 1.15, 100, 50, 0, Math.PI*2, 3*Math.PI/2, Math.PI);
   var puntos=[];
-      puntos.push(new THREE.Vector2(1.2,2.5));
-      puntos.push(new THREE.Vector2(0.8,2));
+      puntos.push(new THREE.Vector2(1.2,2.55));
+      puntos.push(new THREE.Vector2(0.9,2.2));
   var revo = new THREE.LatheGeometry(puntos);    
   
       
