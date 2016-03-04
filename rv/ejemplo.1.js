@@ -41,5 +41,5 @@ function loop(){
 var escena,camara,renderer;
 var step,piernaD,piernaI;
 
-step();
+setup();
 loop();
