@@ -2,23 +2,22 @@ function setup() {
   
   var esferaForma = new THREE.SphereGeometry(2,100,100);
   var mediaesferaForma = new THREE.SphereGeometry( 1.15, 100, 50, 0, Math.PI*2, 3*Math.PI/2, Math.PI);
-  var mediaesferaForma2 = new THREE.SphereGeometry( 1.5, 100, 50, 0, Math.PI*2, 7*Math.PI/4, Math.PI/4);
-  
-  
+  var puntos=[];
+      puntos.push(new THREE.Vector2(1.5,2.5));
+      puntos.push(new THREE.Vector2(1,2));
+      
+      
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
-  var mediaesfera2 = new THREE.Mesh(mediaesferaForma2);
+  var revo = new THREE.LatheGeometry(puntos);
   
   mediaesfera1.position.y=2.5;
-  mediaesfera2.rotation.x=Math.PI;
-  mediaesfera2.position.y=3.55;
-  
 
   var forma = new THREE.Geometry();
   
   THREE.GeometryUtils.merge(forma, esfera1);
   THREE.GeometryUtils.merge(forma, mediaesfera1);
-  THREE.GeometryUtils.merge(forma, mediaesfera2);
+  THREE.GeometryUtils.merge(forma, revo);
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
