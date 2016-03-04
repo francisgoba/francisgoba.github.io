@@ -5,8 +5,8 @@ function Pierna(){
   this.pierna.position.y=-2.5;
   this.pie.position.y=-4.5;
   this.pie.position.x=1;
-  this.add(pie);
   this.add(pierna);
+  this.add(pie);
 }
 
 Pierna.prototype = new THREE.Object3D();
