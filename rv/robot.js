@@ -6,7 +6,7 @@ function setup() {
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
   
-  mediaesfera1.position.y=3;
+  mediaesfera1.position.y=2.5;
 
   var forma = new THREE.Geometry();
   
