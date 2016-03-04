@@ -17,7 +17,7 @@ function setup() {
 
   cilindromalla.position.y=3.75;
   cilindromalla.position.x=0.25;
-  cilindromalla2.position.y=3.5;
+  cilindromalla2.position.y=3.75;
   cilindromalla2.position.x=-0.25;
   mediaesfera1.position.y=2.35;
 
