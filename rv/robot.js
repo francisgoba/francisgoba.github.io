@@ -27,7 +27,7 @@ function setup() {
   cilindromalla = new THREE.Mesh( cilindroForma, materialcilindro );
   malla = new THREE.Mesh( forma, material );
   
-  malla.rotation.y +=Math.PI;
+  malla.rotation.x +=Math.PI/2;
   
   escena = new THREE.Scene();
   escena.add( malla );
