@@ -26,7 +26,7 @@ function setup() {
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
-  cilindromalla = new THREE.Mesh( cilindro, materialcilindro );
+  cilindromalla = new THREE.Mesh( cilindroForma, materialcilindro );
   malla = new THREE.Mesh( forma, material );
   
   malla.rotation.x +=Math.PI;
