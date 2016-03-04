@@ -5,11 +5,13 @@ function setup() {
   var puntos=[];
       puntos.push(new THREE.Vector2(1.5,2.5));
       puntos.push(new THREE.Vector2(1,2));
-      
+  var revo = new THREE.LatheGeometry(puntos);    
+  
       
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
-  var revo = new THREE.LatheGeometry(puntos);
+  var revomalla = new THREE.Mesh(revo);
+  
   
   mediaesfera1.position.y=2.5;
 
@@ -17,7 +19,7 @@ function setup() {
   
   THREE.GeometryUtils.merge(forma, esfera1);
   THREE.GeometryUtils.merge(forma, mediaesfera1);
-  THREE.GeometryUtils.merge(forma, revo);
+  THREE.GeometryUtils.merge(forma, revomalla);
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
