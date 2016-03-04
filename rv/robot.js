@@ -5,7 +5,7 @@ function setup() {
   var puntos=[];
       puntos.push(new THREE.Vector2(1.175,2.4));
       puntos.push(new THREE.Vector2(0.95,2));
-  var revo = new THREE.LatheGeometry(puntos);    
+  var revo = new THREE.LatheGeometry(puntos,100);    
   
       
   var esfera1 = new THREE.Mesh(esferaForma);
