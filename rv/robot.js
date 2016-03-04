@@ -32,9 +32,6 @@ function setup() {
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
   malla = new THREE.Mesh( forma, material );
-
-  //malla.rotation.x +=Math.PI/2;
-  //cilindromalla.rotation.x +=Math.PI/2;
   
   escena = new THREE.Scene();
   escena.add( malla );
@@ -50,9 +47,8 @@ function setup() {
 function loop() {
   requestAnimationFrame( loop );
   
-  //malla.rotation.x += 0.01;
-  //cilindromalla.rotation.x +=0.01;
-  //malla.rotation.y += 0.01;
+  malla.rotation.x += 0.01;
+  malla.rotation.y += 0.01;
   
   renderer.render( escena, camara);
 }
