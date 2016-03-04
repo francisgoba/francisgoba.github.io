@@ -7,15 +7,18 @@ function setup() {
       puntos.push(new THREE.Vector2(0.95,2));
   var revo = new THREE.LatheGeometry(puntos,100); 
   var cilindroForma = new THREE.CylinderGeometry(0.02,0.02,0.8,100);
-  var cilindroForma2 = new THREE.CylinderGeometry(0.02,0.02,0.8,100);
+  var cilindroForma2 = new THREE.CylinderGeometry(0.02,0.02,0.5,100);
   
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
   var revomalla = new THREE.Mesh(revo);
-  var cilindromalla = new THREE.Mesh( cilindroForma, materialcilindro );
-  
+  var cilindromalla = new THREE.Mesh( cilindroForma);
+  var cilindromalla2 = new THREE.Mesh( cilindroForma2);
+
   cilindromalla.position.y=3.75;
   cilindromalla.position.x=0.25;
+  cilindromalla2.position.y=3.5;
+  cilindromalla2.position.x=-0.25;
   mediaesfera1.position.y=2.35;
 
   var forma = new THREE.Geometry();
@@ -24,6 +27,7 @@ function setup() {
   THREE.GeometryUtils.merge(forma, mediaesfera1);
   THREE.GeometryUtils.merge(forma, revomalla);
   THREE.GeometryUtils.merge(forma, cilindromalla);
+  THREE.GeometryUtils.merge(forma, cilindromalla2);
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
