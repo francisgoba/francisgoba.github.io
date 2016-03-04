@@ -9,17 +9,18 @@ function setup() {
   var cilindroForma = new THREE.CylinderGeometry(0.02,0.02,0.8,100);
   var cilindroForma2 = new THREE.CylinderGeometry(0.02,0.02,0.5,100);
   
-  var esfera1 = new THREE.Mesh(esferaForma);
-  var materialesfera = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-  var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
+  /*var materialesfera = new THREE.MeshBasicMaterial( { color: 0xffffff } );
   var materialmediaesfera1 = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-  var revomalla = new THREE.Mesh(revo);
   var materialrevomalla = new THREE.MeshBasicMaterial( { color: 0x777777 } );
-  var cilindromalla = new THREE.Mesh( cilindroForma);
   var materialcilindromalla = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+  var materialcilindromalla2 = new THREE.MeshBasicMaterial( { color: 0xffffff } );*/
+  
+  var esfera1 = new THREE.Mesh(esferaForma);
+  var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
+  var revomalla = new THREE.Mesh(revo);
+  var cilindromalla = new THREE.Mesh( cilindroForma);
   var cilindromalla2 = new THREE.Mesh( cilindroForma2);
-  var materialcilindromalla2 = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-
+  
   cilindromalla.position.y=3.85;
   cilindromalla.position.x=0.13;
   cilindromalla2.position.y=3.6;
@@ -50,8 +51,8 @@ function setup() {
 function loop() {
   requestAnimationFrame( loop );
   
-  malla.rotation.x += 0.01;
-  malla.rotation.y += 0.5;
+  //malla.rotation.x += 0.01;
+  malla.rotation.y += 0.01;
   
   renderer.render( escena, camara);
 }
