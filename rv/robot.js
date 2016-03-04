@@ -37,7 +37,7 @@ function loop() {
   renderer.render( escena, camara);
 }
 
-var escena, camara, render, malla, material;
+var escena, camara, render,material,malla;
 
 setup();
 loop();
