@@ -4,7 +4,7 @@ function setup() {
   var mediaesferaForma = new THREE.SphereGeometry( 1.15, 100, 50, 0, Math.PI*2, 3*Math.PI/2, Math.PI);
   var puntos=[];
       puntos.push(new THREE.Vector2(1.2,2.4));
-      puntos.push(new THREE.Vector2(1,2));
+      puntos.push(new THREE.Vector2(0.95,2));
   var revo = new THREE.LatheGeometry(puntos);    
   
       
@@ -13,7 +13,7 @@ function setup() {
   var revomalla = new THREE.Mesh(revo);
   
   
-  mediaesfera1.position.y=2.4;
+  mediaesfera1.position.y=2.35;
 
   var forma = new THREE.Geometry();
   
