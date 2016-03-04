@@ -11,7 +11,7 @@ function setup() {
   
   mediaesfera1.position.y=2.5;
   mediaesfera2.rotation.x=Math.PI;
-  mediaesfera2.position.y=3.60;
+  mediaesfera2.position.y=3.55;
   
 
   var forma = new THREE.Geometry();
