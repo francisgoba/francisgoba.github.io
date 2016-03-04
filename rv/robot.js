@@ -5,13 +5,16 @@ function setup() {
   var puntos=[];
       puntos.push(new THREE.Vector2(1.175,2.4));
       puntos.push(new THREE.Vector2(0.95,2));
-  var revo = new THREE.LatheGeometry(puntos,100);    
+  var revo = new THREE.LatheGeometry(puntos,100); 
+  var cilindroForma = new THREE.CylinderGeometry(1,1,5,20);
   
+  materialcilindro = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
+  
+      
       
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
   var revomalla = new THREE.Mesh(revo);
-  
   
   mediaesfera1.position.y=2.35;
 
@@ -23,10 +26,14 @@ function setup() {
   
   material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
   
+  cilindromalla = new THREE.Mesh( cilindro, materialcilindro );
   malla = new THREE.Mesh( forma, material );
+  
+  malla.rotation.x +=Math.PI;
   
   escena = new THREE.Scene();
   escena.add( malla );
+  escena.add( cilindromalla );
   
   camara = new THREE.PerspectiveCamera();
   camara.position.z = 10;
@@ -40,12 +47,12 @@ function loop() {
   requestAnimationFrame( loop );
   
   //malla.rotation.x += 0.01;
-  malla.rotation.y += 0.01;
+  //malla.rotation.y += 0.01;
   
   renderer.render( escena, camara);
 }
 
-var escena, camara, render,material,malla;
+var escena, camara, render,material,materialcilindro,cilindromalla,malla;
 
 setup();
 loop();
