@@ -31,10 +31,16 @@ function setup() {
   
   material = new THREE.MeshPhongMaterial({color: '#00cc00'});
   
+  luzPuntual = new THREE.PointLight(0xffffff);
+  luzPuntual.position.x=10;
+  luzPuntual.position.y=10;
+  luzPuntual.position.z=10;
+  
   malla = new THREE.Mesh( forma, material );
   
   escena = new THREE.Scene();
   escena.add( malla );
+  escena.add( luzPuntual );
   
   camara = new THREE.PerspectiveCamera();
   camara.position.z = 10;
@@ -53,7 +59,7 @@ function loop() {
   renderer.render( escena, camara);
 }
 
-var escena, camara, render,material,malla;
+var escena, camara, render,material,luzPuntual,malla;
 
 setup();
 loop();
