@@ -48,7 +48,7 @@ function loop(){
 }
 
 var escena,camara,renderer;
-var step,cuerpo;
+var step,cuerpoc;
 
 setup();
 loop();
