@@ -41,6 +41,8 @@ function setup(){
 function loop(){
   requestAnimationFrame( loop );
   renderer.render( escena, camara);
+  cuerpoc.rotation.x+=0.01;
+  cuerpoc.rotation.y+=0.01;
   if (Math.abs(cuerpoc.piernaD.rotation.z) > 0.5)
     step = -step;
   cuerpoc.piernaD.rotation.z+=step;
