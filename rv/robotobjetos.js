@@ -1,18 +1,18 @@
 function Cuerpo(){
   THREE.Object3D.call(this);
-  this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100));
+  this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshBasicMaterial({0xffffff}));
   this.add(this.cuerpo)
 }
 
 function Cabeza(){
   THREE.Object3D.call(this);
-  this.cabeza=new THREE.Mesh(new THREE.SphereGeometry(1.15,100,50,0,Math.PI*2,3*Math.PI/2,Math.PI));
+  this.cabeza=new THREE.Mesh(new THREE.SphereGeometry(1.15,100,50,0,Math.PI*2,3*Math.PI/2,Math.PI),new THREE.MeshBasicMaterial({0xffffff}));
   var puntos=[];
     puntos.push(new THREE.Vector2(1.175,2.4));
     puntos.push(new THREE.Vector2(0.95,2));
-  this.cuello=new THREE.Mesh(new THREE.LatheGeometry(puntos,100));
-  this.antena1=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.8,100));
-  this.antena2=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.5,100));
+  this.cuello=new THREE.Mesh(new THREE.LatheGeometry(puntos,100),new THREE.MeshBasicMaterial({0x777777}));
+  this.antena1=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.8,100),new THREE.MeshBasicMaterial({0xffffff}));
+  this.antena2=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.5,100),new THREE.MeshBasicMaterial({0xffffff}));
   this.cabeza.position.y=2.35;
   this.antena1.position.y=3.85;
   this.antena1.position.x=0.13;
