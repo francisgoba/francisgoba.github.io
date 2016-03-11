@@ -1,6 +1,6 @@
 function Cuerpo(){
   THREE.Object3D.call(this);
-  this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshlambertMaterial({color:0xffffff}));
+  this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshLambertMaterial({color:0xffffff}));
   this.add(this.cuerpo)
 }
 
