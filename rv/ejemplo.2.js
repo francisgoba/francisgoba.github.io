@@ -43,8 +43,8 @@ function loop(){
   renderer.render( escena, camara);
   if (Math.abs(cuerpoc.piernaD.rotation.z) > 0.5)
     step = -step;
-  piernaD.rotation.z+=step;
-  piernaI.rotation.z-=step;
+  cuerpoc.piernaD.rotation.z+=step;
+  cuerpoc.piernaI.rotation.z-=step;
 }
 
 var escena,camara,renderer;
