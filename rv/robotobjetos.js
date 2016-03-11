@@ -43,8 +43,8 @@ function setup(){
 function loop(){
   requestAnimationFrame( loop );
   renderer.render( escena, camara);
-  cuerpoBB8.rotation.y+=0.01;
-  cabezaBB8.rotation.x+=0.01;
+  cuerpoBB8.rotation.x+=0.01;
+  cabezaBB8.rotation.y+=0.01;
 }
 
 var escena,camara,renderer;
