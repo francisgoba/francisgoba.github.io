@@ -30,7 +30,7 @@ Cabeza.prototype=new THREE.Object3D();
 function setup(){
   cuerpoBB8 = new Cuerpo();
   cabezaBB8 = new Cabeza();
-  escena = new THREE.Scene():
+  escena = new THREE.Scene();
   escena.add(cuerpoBB8);
   escena.add(cabezaB88);
   camara = new THREE.PerspectiveCamera();
