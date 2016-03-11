@@ -29,14 +29,7 @@ function setup() {
   THREE.GeometryUtils.merge(forma, cilindromalla);
   THREE.GeometryUtils.merge(forma, cilindromalla2);
   
-  material = new THREE.MeshPhongMaterial({color: '#00cc00'});
-  
-  luzPuntual = new THREE.PointLight(0xffffff);
-  luzPuntual.position.x=10;
-  luzPuntual.position.y=10;
-  luzPuntual.position.z=10;
-  
-  malla = new THREE.Mesh( forma, material );
+  malla = new THREE.Mesh( forma );
   
   escena = new THREE.Scene();
   escena.add( malla );
@@ -59,7 +52,7 @@ function loop() {
   renderer.render( escena, camara);
 }
 
-var escena, camara, render,material,luzPuntual,malla;
+var escena, camara, render,malla;
 
 setup();
 loop();
