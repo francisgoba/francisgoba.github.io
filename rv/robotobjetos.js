@@ -32,7 +32,7 @@ function setup(){
   cabezaBB8 = new Cabeza();
   escena = new THREE.Scene();
   escena.add(cuerpoBB8);
-  escena.add(cabezaB88);
+  escena.add(cabezaBB8);
   camara = new THREE.PerspectiveCamera();
   camara.position.z=10;
   renderer = new THREE.WebGLRenderer();
