@@ -3,7 +3,7 @@ fuction setup(){
   var textura = THREE.ImageUtils.loadTexture('http://threejs.org/examples/textures/crate.gif');
   var material = THREE.MeshBasicMaterial({map: textura});
   var forma = THREE.BoxGeometry(1,1,1);
-  malla =THREE.Mesh(forma, material);
+  malla = THREE.Mesh(forma, material);
   escena = new THREE.scene();
   escena.add(malla);
   camara = new THREE.PerspectiveCamera();
@@ -18,5 +18,6 @@ function loop(){
   malla.rotation.x+=0.01;
   malla.rotation.y+=0.01;
 }
+var camara,escena,malla,renderer;
 setup();
 loop();
