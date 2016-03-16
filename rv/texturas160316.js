@@ -4,7 +4,7 @@ fuction setup(){
   var material = THREE.MeshBasicMaterial({map: textura});
   var forma = THREE.BoxGeometry(1,1,1);
   malla = THREE.Mesh(forma, material);
-  escena = new THREE.scene();
+  escena = new THREE.Scene();
   escena.add(malla);
   camara = new THREE.PerspectiveCamera();
   camara.position.z = 5;
