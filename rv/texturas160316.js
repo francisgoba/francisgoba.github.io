@@ -1,4 +1,4 @@
-fuction setup(){
+function setup(){
   THREE.ImageUtils.crossOrigin = '';
   var textura = THREE.ImageUtils.loadTexture('http://threejs.org/examples/textures/crate.gif');
   var material = THREE.MeshBasicMaterial({map: textura});
