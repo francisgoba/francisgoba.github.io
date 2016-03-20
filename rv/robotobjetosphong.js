@@ -7,7 +7,7 @@ function Cuerpo(){
 function Cabeza(){
   THREE.Object3D.call(this);
   this.cabeza=new THREE.Mesh(new THREE.SphereGeometry(1.15,100,50,0,Math.PI*2,3*Math.PI/2,Math.PI),new THREE.MeshPhongMaterial({color:0xffffff}));
-  this.cuello=new THREE.Mesh(new THREE.CylinderGeomtry(1.15,1,0.2,100),new THREE.MeshPhongMaterial({color:0x777777}));
+  this.cuello=new THREE.Mesh(new THREE.CylinderGeometry(1.15,1,0.2,100),new THREE.MeshPhongMaterial({color:0x777777}));
   this.antena1=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.8,100),new THREE.MeshPhongMaterial({color:0xffffff}));
   this.antena2=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.5,100),new THREE.MeshPhongMaterial({color:0xffffff}));
   this.cabeza.position.y=2.35;
