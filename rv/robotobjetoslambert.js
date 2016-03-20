@@ -7,10 +7,7 @@ function Cuerpo(){
 function Cabeza(){
   THREE.Object3D.call(this);
   this.cabeza=new THREE.Mesh(new THREE.SphereGeometry(1.15,100,50,0,Math.PI*2,3*Math.PI/2,Math.PI),new THREE.MeshLambertMaterial({color:0xffffff}));
-  var puntos=[];
-    puntos.push(new THREE.Vector2(1.175,2.4));
-    puntos.push(new THREE.Vector2(0.95,2));
-  this.cuello=new THREE.Mesh(new THREE.LatheGeometry(puntos,100),new THREE.MeshLambertMaterial({color:0x777777}));
+  this.cuello=new THREE.Mesh(new new THREE.CylinderGeometry(1.15,1,0.2,100),new THREE.MeshLambertMaterial({color:0x777777}));
   this.antena1=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.8,100),new THREE.MeshLambertMaterial({color:0xffffff}));
   this.antena2=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.5,100),new THREE.MeshLambertMaterial({color:0xffffff}));
   this.cabeza.position.y=2.35;
@@ -18,6 +15,7 @@ function Cabeza(){
   this.antena1.position.x=0.13;
   this.antena2.position.y=3.6;
   this.antena2.position.x=-0.15;
+  this.cuello.position.y=2.2;
   this.add(this.cabeza);
   this.add(this.cuello);
   this.add(this.antena1);
