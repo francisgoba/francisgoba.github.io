@@ -15,7 +15,7 @@ function Cabeza(){
   this.antena1.position.x=0.13;
   this.antena2.position.y=3.6;
   this.antena2.position.x=-0.15;
-  this.cuello.position.y=2.5;
+  this.cuello.position.y=2.2;
   this.add(this.cabeza);
   this.add(this.cuello);
   this.add(this.antena1);
