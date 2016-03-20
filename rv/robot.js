@@ -8,12 +8,14 @@ function setup() {
   var revo = new THREE.LatheGeometry(puntos,100); 
   var cilindroForma = new THREE.CylinderGeometry(0.02,0.02,0.8,100);
   var cilindroForma2 = new THREE.CylinderGeometry(0.02,0.02,0.5,100);
+  var cilindroForma3 = new THREE.CylinderGeometry(1.175,0.95,0.4,100);
   
   var esfera1 = new THREE.Mesh(esferaForma);
   var mediaesfera1 = new THREE.Mesh(mediaesferaForma);
   var revomalla = new THREE.Mesh(revo);
   var cilindromalla = new THREE.Mesh( cilindroForma);
   var cilindromalla2 = new THREE.Mesh( cilindroForma2);
+  var cilindromalla3 = new THREE.Mesh (cilindroForma3);
   
   cilindromalla.position.y=3.85;
   cilindromalla.position.x=0.13;
@@ -25,9 +27,10 @@ function setup() {
   
   THREE.GeometryUtils.merge(forma, esfera1);
   THREE.GeometryUtils.merge(forma, mediaesfera1);
-  THREE.GeometryUtils.merge(forma, revomalla);
+  //THREE.GeometryUtils.merge(forma, revomalla);
   THREE.GeometryUtils.merge(forma, cilindromalla);
   THREE.GeometryUtils.merge(forma, cilindromalla2);
+  THREE.GeometryUtils.merge(forma, cilindromalla3);
   
   malla = new THREE.Mesh( forma );
   
