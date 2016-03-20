@@ -25,7 +25,7 @@ function setup() {
 
   var forma = new THREE.Geometry();
   
-  THREE.GeometryUtils.merge(forma, esfera1);
+  //THREE.GeometryUtils.merge(forma, esfera1);
   THREE.GeometryUtils.merge(forma, mediaesfera1);
   //THREE.GeometryUtils.merge(forma, revomalla);
   THREE.GeometryUtils.merge(forma, cilindromalla);
