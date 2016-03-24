@@ -53,7 +53,7 @@ function loop(){
   BB8modelo.cuello.rotation.y+=0.01;
   BB8modelo.antena1.rotation.y+=0.01;
   BB8modelo.antena2.rotation.y+=0.01;
-  //BB8modelo.cuerpo.rotation.x+=0.5;
+  BB8modelo.cuerpo.rotation.x+=0.5;
   //BB8modelo.rotation.y+=0.01;
   //BB8modelo.rotation.x+=0.01;
 }
