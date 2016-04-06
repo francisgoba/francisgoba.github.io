@@ -32,6 +32,7 @@ BB8.prototype=new THREE.Object3D();
 function setup(){
 
  BB8modelo = new BB8();
+ BB8modelo.rotation.x=Math.PI/2; 	
  //BB8modelocabeza.rotation.x=1;
  luzPuntual = new THREE.PointLight(0xffffff);
  luzPuntual.position.x=0;  
@@ -39,11 +40,16 @@ function setup(){
  luzPuntual.position.z=30;
 
 
- cubo = new THREE.Mesh(new THREE.BoxGeometry(1,4,4), new THREE.MeshNormalMaterial());
- cubo2 = new THREE.Mesh(new THREE.BoxGeometry(1,4,4), new THREE.MeshNormalMaterial());
+ cubo = new THREE.Mesh(new THREE.BoxGeometry(1,20,4), new THREE.MeshNormalMaterial());
+ cubo2 = new THREE.Mesh(new THREE.BoxGeometry(1,20,4), new THREE.MeshNormalMaterial());
+ cubo3 = new THREE.Mesh(new THREE.BoxGeometry(21,1,4), new THREE.MeshNormalMaterial());
+ cubo4 = new THREE.Mesh(new THREE.BoxGeometry(21,1,4), new THREE.MeshNormalMaterial());
  
- cubo.position.x=7;
- cubo2.position.x=-7;
+ 
+ cubo.position.x=10;
+ cubo2.position.x=-10;
+ cubo3.position.y=10;
+ cubo4.position.y=-10;
  
  escena = new THREE.Scene();
  camara = new THREE.PerspectiveCamera();
@@ -51,9 +57,13 @@ function setup(){
  
  raycaster1 = new THREE.Raycaster(BB8modelo.position,new THREE.Vector3(1,0,0));
  raycaster2 = new THREE.Raycaster(BB8modelo.position,new THREE.Vector3(-1,0,0));
+ raycaster3 = new THREE.Raycaster(BB8modelo.position,new THREE.Vector3(0,1,0));
+ raycaster4 = new THREE.Raycaster(BB8modelo.position,new THREE.Vector3(0,-1,0));
 
  escena.add(cubo);
  escena.add(cubo2);
+ escena.add(cubo3);
+ escena.add(cubo4);
  escena.add(camara);
  escena.add(BB8modelo);
  escena.add(luzPuntual);
@@ -62,41 +72,50 @@ function setup(){
  renderer.setSize(window.innerHeight*0.95,window.innerHeight*0.95);
  document.body.appendChild(renderer.domElement);
  step=0.1;
- cabezarota=-5.14;	
+ step2=-0.5;
+ cabezarota=3.14;	
 }
 
 function loop(){
 
  obstaculo1 = raycaster1.intersectObject(cubo);
  obstaculo2 = raycaster2.intersectObject(cubo2);
-
+ obstaculo3 = raycaster3.intersectObject(cubo3);
+ obstaculo4 = raycaster4.intersectObject(cubo4);
  
- BB8modelo.cuerpo.rotation.z+=0.5;
+ 
 
  if ((obstaculo1.length > 0 && (obstaculo1[0].distance<=2)) || 
-     (obstaculo2.length > 0 && (obstaculo2[0].distance<=2))) 
+     (obstaculo2.length > 0 && (obstaculo2[0].distance<=2)) ||
+     (obstaculo3.length > 0 && (obstaculo3[0].distance<=2)) ||
+     (obstaculo4.length > 0 && (obstaculo4[0].distance<=2)))
  {
   step=-step;
-  if(cabezarota==-5.14)
-  cabezarota=3.14;
-  else
+  step2=-step2;
+  if(cabezarota==3.14)
   cabezarota=-5.14;
+  else
+  cabezarota=3.14;
  }
 
- BB8modelo.position.x += step;
+ BB8modelo.cuerpo.rotation.z+=step2; 
+ BB8modelo.position.x+=step;
  BB8modelo.cabeza.rotation.y=cabezarota;
- //BB8modelo.cuello.rotation.y=cabezarota;
+ BB8modelo.cuello.rotation.y=cabezarota;
  BB8modelo.antena1.rotation.y=cabezarota;
  BB8modelo.antena2.rotation.y=cabezarota;
  
  raycaster1.set(BB8modelo.position, new THREE.Vector3(1,0,0));
  raycaster2.set(BB8modelo.position, new THREE.Vector3(-1,0,0));
+ raycaster3.set(BB8modelo.position, new THREE.Vector3(0,1,0));
+ raycaster4.set(BB8modelo.position, new THREE.Vector3(0,-1,0));	
+
  renderer.render(escena,camara);
  requestAnimationFrame(loop);
 
 }
-var cubo,cubo2,escena,camara,renderer;
-var raycaster1,raycaster2,step,cabezarota;
-var obstaculo1,obstaculo2;
+var cubo,cubo2,cubo3,cubo4,escena,camara,renderer;
+var raycaster1,raycaster2,raycaster3,raycaster4,step,step2,angulo,cabezarota;
+var obstaculo1,obstaculo2,obstaculo3,obstaculo4;
 setup();
 loop();
