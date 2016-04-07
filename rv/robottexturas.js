@@ -15,7 +15,7 @@ function BB8(){
   this.cabeza.position.y=1.95;
   this.antena1.position.y=3.35;
   this.antena1.position.x=0.13;
-  this.antena2.position.y=3.1;
+  this.antena2.position.y=3.35;
   this.antena2.position.x=-0.15;
   this.cuello.position.y=1.85;
 
