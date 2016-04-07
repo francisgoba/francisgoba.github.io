@@ -31,6 +31,7 @@ BB8.prototype=new THREE.Object3D();
 
 function setup(){
   BB8modelo = new BB8();
+  BB8modelo.rotation.x=Math.PI/2;
   //BB8modelocabeza.rotation.x=1;
   luzPuntual = new THREE.PointLight(0xffffff);
   luzPuntual.position.x=0;
