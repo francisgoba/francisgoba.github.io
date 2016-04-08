@@ -1,0 +1,123 @@
+function BB8Cabeza(){
+ THREE.Object3D.call(this);
+ THREE.ImageUtils.crossOrigin = '';
+ var texturahead = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/bb8head2.jpg');
+ this.cabeza=new THREE.Mesh(new THREE.SphereGeometry    (1.15,100,50,0,Math.PI*2,3*Math.PI/2,Math.PI),new THREE.MeshPhongMaterial({map:texturahead}));
+ this.cuello=new THREE.Mesh(new THREE.CylinderGeometry(1.15,1,0.2,100),new     THREE.MeshPhongMaterial({color:0xffffff}));
+ this.antena1=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.8,100),new     THREE.MeshPhongMaterial({color:0xffffff}));
+ this.antena2=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.02,0.5,100),new     THREE.MeshPhongMaterial({color:0xffffff}));
+ this.cabeza.position.y=1.95;
+ this.antena1.position.y=3.35;
+ this.antena1.position.x=0.13;
+ this.antena2.position.y=3.1;
+ this.antena2.position.x=-0.15;
+ this.cuello.position.y=1.85;
+ this.add(this.cabeza);
+ this.add(this.antena1);
+ this.add(this.antena2);
+ this.add(this.cuello);
+}
+
+BB8Cabeza.prototype=new THREE.Object3D();
+
+function BB8(x=0, y=0){
+ Agent.call(this,x,y);
+ THREE.ImageUtils.crossOrigin = '';
+ var textura = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/bb8body.jpg');
+ this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshPhongMaterial ({map:textura}));
+ this.cabezabb8 = new BB8Cabeza();
+ this.cuerpo.rotation.z=-0.25;  
+ this.add(this.cuerpo);
+ this.add(this.cabezabb8);
+ this.colision = 0;
+ this.sensor=new THREE.Raycaster(this.position, new THREE.Vector3(1,0,0));
+ this.actuator = new THREE.
+}
+
+function Wall(size,x=0,y=0){
+ Agent.call(this,x,y);
+ this.add(new THREE.Mesh(new THREE.BoxGeometry(size,size,size), new THREE.MeshNormalMaterial()));
+}
+
+BB8.prototype=new Agent();
+Wall.prototype=new Agent();
+
+BB8.prototype.sense=function(environment){
+ this.sensor.set(this.position, new THREE.Vector3(Math.cos(this.rotation.z),Math.sin(this.rotation.z),0));
+ var obstaculo = this.sensor.intersectObjects(environment.children,true);
+ if ((obstaculo.length>0&&(obstaculo[0].distance<=0.5)))
+  this.sensor.colision=true;
+ else
+  this.sensor.colision=false;
+}
+
+BB8.prototype.plan = function(environment){
+ this.actuator.commands=[];
+ if(this.sensor.colision==true)
+  this.actuator.commands.push('RotarIzquierda');
+ else
+  this.actuator.commands.push('Derecho');
+}
+
+BB8.prototype.act=function(environment){
+ var command=this.actuator.commands.pop();
+ if(command==undefined)
+  console.log('Undefined command');
+ else if(command in this.operations)
+  this.operations[command](this);
+ else
+  console.log('Unknown command'); 
+}
+
+BB8.prototype.operations = {};
+BB8.prototype.operations.Derecho = function(robot,step){
+ if(step==undefined)
+  step=0.1;
+ robot.position.x+=step*Math.cos(robot.rotation.z);
+ robot.position.y+=step*Math.sin(robot.rotation.z);
+};
+BB8.prototype.operations.RotarIzquierda = function(robot,angulo){
+ if(angulo==undefined)
+  angulo=Math.PI/2;
+ robot.rotation.z+=angulo; 
+};
+ 
+
+function setup(){
+ var mapa = new Array();
+ mapa[0] = "xxxxxxxxxxxx";
+ mapa[1] = "x          x";
+ mapa[2] = "x          x";
+ mapa[3] = "x          x";
+ mapa[4] = "x          x";
+ mapa[5] = "x          x";
+ mapa[6] = "x    r     x";
+ mapa[7] = "x          x";
+ mapa[8] = "x          x";
+ mapa[9] = "x          x";
+ mapa[10] = "x          x";
+ mapa[11] = "x          x";
+ mapa[12] = "xxxxxxxxxxxx";
+ entorno=new Environment();
+ entorno.setMap(mapa);
+ camara=new THREE.PerspectiveCamera();
+ camara.position.z=30;
+ renderer = new THREE.WebGLRenderer();
+ renderer.setSize(window.innerHeight*0.95, window.innerHeight*0.95);
+ document.body.appendChild(renderer.domElement);
+ entorno.add(camara);
+}
+
+function loop(){
+ requestAnimationFrame(loop);
+ entorno.sense();
+ entorno.plan();
+ entorno.act();
+ renderer.render(entorno,camara);
+}
+
+var entorno,robot,step,angulo,camara,renderer;
+
+setup();
+loop();
+   
