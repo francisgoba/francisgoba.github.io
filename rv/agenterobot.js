@@ -1,10 +1,11 @@
 function Agent(x=0, y=0){
- THREE.Object3D.call(this);
+ THREE.Object3D.call(this);   //Llama a cada objeto para que sean independientes
  this.position.x=x;
  this.position.y=y;
 }
 
 Agent.prototype = new THREE.Object3D();
+
 Agent.prototype.sense = function(environment) {};
 Agent.prototype.plan = function(environment) {};
 Agent.prototype.act = function(environment) {};
@@ -36,14 +37,4 @@ Environment.prototype.act = function() {
  }
 }
 
-Environment.prototype.setMap=function(map){
- var offset=Math.floor(map.length/2);
- for(var i=0;i<map.length;i++){
-  for(var j=0;j<map.length;j++){
-   if(map[i][j]=="x")
-    this.add(new Wall(1,j-offset,-(i-offset)));
-   else if(map[i][j]=="r")
-    this.add(new BB8(0.5,j-offset,-(i-offset)));
-  }
- }
-}
+	
