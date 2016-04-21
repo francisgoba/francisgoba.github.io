@@ -37,7 +37,7 @@ function BB8(x=0, y=0){
  this.add(this.cabezabb8);
 
  this.sensor=new Sensor();
- this.sensor2=new Sensor();
+ //this.sensor2=new Sensor();
  this.actuator=new Array();
  
  this.cuerpo.rotation.x=Math.PI/2;
@@ -74,27 +74,31 @@ Environment.prototype.setMap=function(map){
 
 BB8.prototype.sense=function(environment){
  this.sensor.set(this.position, new THREE.Vector3(Math.cos(this.rotation.z),Math.sin(this.rotation.z),0));
- this.sensor2.set(this.position, new THREE.Vector3(Math.sin(this.rotation.z),Math.cos(this.rotation.z),0));
+ //this.sensor2.set(this.position, new THREE.Vector3(Math.sin(this.rotation.z),Math.cos(this.rotation.z),0));
  var obstaculo = this.sensor.intersectObjects(environment.children,true);
- var obstaculo2 = this.sensor2.intersectObjects(environment.children,true);
+ //var obstaculo2 = this.sensor2.intersectObjects(environment.children,true);
  if ((obstaculo.length>0&&(obstaculo[0].distance<=1)))
   this.sensor.colision=true;
  else
   this.sensor.colision=false;
- if((obstaculo2.length>0&&(obstaculo2[0].distance<=1)))
+ /*if((obstaculo2.length>0&&(obstaculo2[0].distance<=1)))
   this.sensor2.colision=true;
  else
-  this.sensor2.colision=false;
+  this.sensor2.colision=false;*/
 }
 
 BB8.prototype.plan = function(environment){
  this.actuator.commands=[];
- if(this.sensor.colision==false && this.sensor2.colision==true)
+ /*if(this.sensor.colision==false && this.sensor2.colision==true)
   this.actuator.commands.push('Derecho');
  else if(this.sensor.colision==true && this.sensor2.colision==true)
    this.actuator.commands.push('RotarDerecha');
  else
+   this.actuator.commands.push('RotarIzquierda');*/
+  if(this.sensor.colision==true)
    this.actuator.commands.push('RotarIzquierda');
+  else
+   this.actuator.commands.push('Derecho');
 }
 
 BB8.prototype.act=function(environment){
@@ -152,12 +156,12 @@ function setup(){
  mapa[16] = "x                          x";
  mapa[17] = "xxxxxxxx    xxxxxxxxxxxxxxxx";
  mapa[18] = "x                          x";
- mapa[19] = "x                          x";
+ mapa[19] = "x     r                    x";
  mapa[20] = "x                          x";
- mapa[21] = "x                          x";
+ mapa[21] = "x        r                 x";
  mapa[22] = "x                          x";
  mapa[23] = "x                          x";
- mapa[24] = "xxxxxxxxxxxxx              x";
+ mapa[24] = "xxxxxxxxxxxxx           xxxx";
  mapa[25] = "x     r                    x";
  mapa[26] = "x                          x";
  mapa[27] = "x                          x";
