@@ -1,8 +1,8 @@
 function BB8(){
   THREE.Object3D.call(this);
   THREE.ImageUtils.crossOrigin = '';
-  var texturahead = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/bb8head2.jpg');
-  var textura = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/bb8body.jpg');
+  var texturahead = new THREE.TextureLoader().load('http://francisgoba.github.io/rv/bb8head2.jpg');
+  var textura = new THREE.TextureLoader().load('http://francisgoba.github.io/rv/bb8body.jpg');
   //var textura = THREE.ImagenUtils.load.Texture()
 
   this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshPhongMaterial({map:textura}));
