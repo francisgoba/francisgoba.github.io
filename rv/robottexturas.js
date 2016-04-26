@@ -1,17 +1,7 @@
 function BB8(){
   THREE.Object3D.call(this);
   THREE.ImageUtils.crossOrigin = '';
-  var img = new Image();
-  img.src = "http://francisgoba.github.io/rv/bb8head2.jpg";
-  img.onload = function() {
-   gl.bindTexture(gl.TEXTURE_2D, tex);
-   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-
-   // then either generate mips if the image uses power-of-2 dimensions or 
-   // set the filtering correctly for non-power-of-2 images.
-   setupTextureFilteringAndMips(img.width, img.height);
-  }
-  var texturahead = new THREE.TextureLoader().load(img);
+  var texturahead = new THREE.TextureLoader().load('http://francisgoba.github.io/rv/bb8head2.jpg');
   var textura = new THREE.TextureLoader().load('http://francisgoba.github.io/rv/bb8body.jpg');
   //var textura = THREE.ImagenUtils.load.Texture()
 
