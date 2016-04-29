@@ -48,6 +48,8 @@ function BB8(x=0, y=0){
  this.cabezabb8.scale.x=0.5;
  this.cabezabb8.scale.y=0.5;
  this.cabezabb8.scale.z=0.5;
+ this.cabezabb8.castShadow=true;
+ this.cuerpo.castShadow=true;
 }
 BB8.prototype=new Agent();
 
