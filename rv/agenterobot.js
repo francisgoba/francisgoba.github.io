@@ -36,5 +36,3 @@ Environment.prototype.act = function() {
    this.children[i].act(this);
  }
 }
-
-	

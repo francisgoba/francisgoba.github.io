@@ -94,17 +94,18 @@ Environment.prototype.setMap=function(map){
 BB8.prototype.sense=function(environment){
  this.sensor.set(this.position, new THREE.Vector3(Math.cos(this.rotation.z),Math.sin(this.rotation.z),0));
  var obstaculo = this.sensor.intersectObjects(environment.children,true);
- if ((obstaculo.length>0&&(obstaculo[0].distance<=1)))
+ if ((obstaculo.length>0&&(obstaculo[0].distance<=1))){
   this.sensor.colision=true;
+  this.add(new WallBasic(1,this.sensor.position.x,this.sensor.position.y));}
+  //obstaculo.Mesh.material=THREE.MeshBasicMaterial({color:0x2194ce});
  else
   this.sensor.colision=false;
 }
 
 BB8.prototype.plan = function(environment){
  this.actuator.commands=[];
- if(this.sensor.colision==true){
+ if(this.sensor.colision==true)
   this.actuator.commands.push('RotarIzquierda');
-  environment.add(new WallBasic(1,this.position.x,this.position.y));}
  else
   this.actuator.commands.push('Derecho');
 }
