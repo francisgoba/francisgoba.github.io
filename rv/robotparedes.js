@@ -19,6 +19,7 @@ function BB8Cabeza(){
  this.antena2.position.y=3.1;
  this.antena2.position.x=-0.15;
  this.cuello.position.y=1.85;
+
  this.add(this.cabeza);
  this.add(this.antena1);
  this.add(this.antena2);
@@ -39,9 +40,9 @@ function BB8(x=0, y=0){
  this.add(this.cuerpo);
  this.add(this.cabezabb8);
 
- this.luzr=new THREE.SpotLight(0xffffff,4,30,0.05);
- this.luzr.target.rotation.y=Math.PI/2;
- //this.luzr.target.position.set=( 20, 0, 0 );
+ this.luzr=new THREE.SpotLight(0xffffff,4,1000,0.3);
+ this.luzr.target.updateMatrixWorld();
+ this.luzr.target.position.set(10,0,0);
  this.add(this.luzr);
  this.add(this.luzr.target);
  
@@ -57,6 +58,8 @@ function BB8(x=0, y=0){
  this.cabezabb8.scale.x=0.5;
  this.cabezabb8.scale.y=0.5;
  this.cabezabb8.scale.z=0.5;
+ this.cabezabb8.castShadow=true;
+ this.cuerpo.castShadow=true;
 }
 BB8.prototype=new Agent();
 
@@ -68,6 +71,14 @@ function Wall(size,x=0,y=0){
 }
 Wall.prototype=new THREE.Mesh();
 
+function WallBasic(size,x=0,y=0){
+ THREE.Mesh.call(this,new THREE.BoxGeometry(size,size,size), new  THREE.MeshBasicMaterial({color:0x2194ce})); 
+ this.size=size;
+ this.position.x=x;
+ this.position.y=y;
+}
+WallBasic.prototype=new THREE.Mesh();
+
 Environment.prototype.setMap=function(map){
  var offset=Math.floor(map.length/2);
  for(var i=0;i<map.length;i++){
@@ -75,7 +86,7 @@ Environment.prototype.setMap=function(map){
    if(map[i][j]==="x")
     this.add(new Wall(1, j-offset,-(i-offset)));
    else if(map[i][j]==="r")
-    this.add(new BB8(j-offset,-(i-offset)));
+    this.add(new BB8(j-offset,-(i-offset)));	
   }
  }
 }	
@@ -91,8 +102,9 @@ BB8.prototype.sense=function(environment){
 
 BB8.prototype.plan = function(environment){
  this.actuator.commands=[];
- if(this.sensor.colision==true)
+ if(this.sensor.colision==true){
   this.actuator.commands.push('RotarIzquierda');
+  environment.add(new WallBasic(1,this.position.x,this.position.y));}
  else
   this.actuator.commands.push('Derecho');
 }
@@ -133,16 +145,16 @@ BB8.prototype.operations.RotarIzquierda = function(robot,angulo){
  
 function setup(){
  var mapa = new Array();
-  mapa[0] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  mapa[1] = "x                          x";
-  mapa[2] = "x                          x";
-  mapa[3] = "x                          x";
-  mapa[4] = "x                          x";
-  mapa[5] = "x                          x";
-  mapa[6] = "x                          x";
-  mapa[7] = "x                          x";
-  mapa[8] = "x                          x";
-  mapa[9] = "x                          x";
+   mapa[0] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+   mapa[1] = "x                          x";
+   mapa[2] = "x                          x";
+   mapa[3] = "x                          x";
+   mapa[4] = "x                          x";
+   mapa[5] = "x                          x";
+   mapa[6] = "x                          x";
+   mapa[7] = "x                          x";
+   mapa[8] = "x                          x";
+   mapa[9] = "x                          x";
  mapa[10] = "x                          x";
  mapa[11] = "x                          x";
  mapa[12] = "x                          x";
@@ -184,7 +196,6 @@ function setup(){
  entorno.add(floor);
 
  renderer.shadowMap.enabled=true;
- //malla.castShadow=true;
  floor.receiveShadow=true;
  iluminacion.castShadow=true;
 }
@@ -197,7 +208,7 @@ function loop(){
  renderer.render(entorno,camara);
 }
 
-var entorno,iluminacion,robot,step,angulo,camara,renderer;
+var entorno,iluminacion,robot,step,angulo,camara,renderer,i,x,y;
 
 setup();
 loop();
