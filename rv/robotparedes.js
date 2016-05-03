@@ -97,7 +97,7 @@ BB8.prototype.sense=function(environment){
  if ((obstaculo.length>0&&(obstaculo[0].distance<=1))){
   this.sensor.colision=true;
   this.add(new WallBasic(1,this.sensor.position.x,this.sensor.position.y));}
-  //obstaculo.Mesh.material=THREE.MeshBasicMaterial({color:0x2194ce});
+  obstaculo.Mesh.material=THREE.MeshBasicMaterial({color:0x2194ce});
  else
   this.sensor.colision=false;
 }
