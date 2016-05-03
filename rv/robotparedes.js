@@ -96,8 +96,8 @@ BB8.prototype.sense=function(environment){
  var obstaculo = this.sensor.intersectObjects(environment.children,true);
  if ((obstaculo.length>0&&(obstaculo[0].distance<=1))){
   this.sensor.colision=true;
-  this.add(new WallBasic(1,this.sensor.position.x,this.sensor.position.y));}
-  obstaculo.Mesh.material=THREE.MeshBasicMaterial({color:0x2194ce});
+  //obstaculo[0].object.material.color.set(0xff0000);
+  obstaculo[0].object.material=new THREE.MeshBasicMaterial({color:0xff0000});}
  else
   this.sensor.colision=false;
 }
@@ -193,7 +193,7 @@ function setup(){
  renderer.setSize(window.innerHeight*0.95, window.innerHeight*0.95);
  document.body.appendChild(renderer.domElement);
  entorno.add(camara);
- entorno.add(iluminacion);
+ //entorno.add(iluminacion);
  entorno.add(floor);
 
  renderer.shadowMap.enabled=true;
