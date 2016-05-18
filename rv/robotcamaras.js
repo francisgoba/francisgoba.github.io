@@ -29,17 +29,18 @@ function BB8Cabeza(){
 BB8Cabeza.prototype=new THREE.Object3D();
 
 function BB8(x=0, y=0){
+
  Agent.call(this,x,y);
  THREE.ImageUtils.crossOrigin = '';
+
  var textura = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/bb8body.jpg');
  this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshPhongMaterial ({map:textura}));
- //this.cuerpo=new THREE.Mesh(new THREE.SphereGeometry(2,100,100), new THREE.MeshPhongMaterial ());
  this.cabezabb8 = new BB8Cabeza();
  this.cuerpo.rotation.z=-0.25; 
 
  this.add(this.cuerpo);
  this.add(this.cabezabb8);
-
+ 
  this.luzr=new THREE.SpotLight(0xffffff,4,1000,0.3);
  this.luzr.target.updateMatrixWorld();
  this.luzr.target.position.set(10,0,0);
@@ -60,7 +61,9 @@ function BB8(x=0, y=0){
  this.cabezabb8.scale.z=0.5;
  this.cabezabb8.castShadow=true;
  this.cuerpo.castShadow=true;
+
 }
+
 BB8.prototype=new Agent();
 
 function Wall(size,x=0,y=0){
@@ -70,14 +73,6 @@ function Wall(size,x=0,y=0){
  this.position.y=y;
 }
 Wall.prototype=new THREE.Mesh();
-
-function WallBasic(size,x=0,y=0){
- THREE.Mesh.call(this,new THREE.BoxGeometry(size,size,size), new  THREE.MeshBasicMaterial({color:0x2194ce})); 
- this.size=size;
- this.position.x=x;
- this.position.y=y;
-}
-WallBasic.prototype=new THREE.Mesh();
 
 Environment.prototype.setMap=function(map){
  var offset=Math.floor(map.length/2);
@@ -96,7 +91,6 @@ BB8.prototype.sense=function(environment){
  var obstaculo = this.sensor.intersectObjects(environment.children,true);
  if ((obstaculo.length>0&&(obstaculo[0].distance<=1))){
   this.sensor.colision=true;
-  //obstaculo[0].object.material.color.set(0xff0000);
   obstaculo[0].object.material=new THREE.MeshBasicMaterial({color:0xff0000});}
  else
   this.sensor.colision=false;
@@ -104,6 +98,8 @@ BB8.prototype.sense=function(environment){
 
 BB8.prototype.plan = function(environment){
  this.actuator.commands=[];
+
+
  if(this.sensor.colision==true)
   this.actuator.commands.push('RotarIzquierda');
  else
@@ -123,6 +119,9 @@ BB8.prototype.act=function(environment){
 BB8.prototype.operations = {};
 
 BB8.prototype.operations.Derecho = function(robot,step){
+ xr=robot.position.x;
+ yr=robot.position.y;
+
  if(step==undefined)
   step=0.1;
  robot.position.x+=step*Math.cos(robot.rotation.z);
@@ -191,15 +190,19 @@ function setup(){
  iluminacion = new THREE.PointLight(0xffffff);
  iluminacion.position.z=20;
  iluminacion.position.y=10;
+
+ camara1 = new THREE.OrthographicCamera( 35 / - 2, 35 / 2, 35 / 2, 35 / - 2, 10, 1000 );
+ camara1.position.z=50;
+
+ camara2 = new THREE.PerspectiveCamera( );
+ camara2.position.z=20;
  
- camara=new THREE.PerspectiveCamera();
- camara2=new THREE.OrthographicCamera(window.innerWidth/-50,window.innerWidth /50,window.innerHeight/-50,window.innerHeight/50,1,1000);
- camara.position.z =40;
  renderer = new THREE.WebGLRenderer();
  renderer.setSize(window.innerHeight*0.95, window.innerHeight*0.95);
 
  document.body.appendChild(renderer.domElement);
- entorno.add(camara);
+ entorno.add(camara1);
+ entorno.add(camara2);
  entorno.add(iluminacion);
  entorno.add(floor);
  renderer.shadowMap.enabled=true;
@@ -213,15 +216,18 @@ function loop(){
  entorno.sense();
  entorno.plan();
  entorno.act();
- 
- if(keyboard.pressed("P"))
-  renderer.render(entorno,camara);
+
+ camara2.position.x=xr;
+ camara2.position.y=yr;
+
+ if(keyboard.pressed("P")||keyboard.pressed("p"))
+  renderer.render(entorno,camara1);
  else  
   renderer.render(entorno,camara2);
  
 }
 
-var entorno,iluminacion,robot,step,angulo,camara,renderer,i,x,y;
+var entorno,iluminacion,robot,step,angulo,camara,renderer,xr,yr;
 var keyboard = new THREEx.KeyboardState();
 
 setup();
