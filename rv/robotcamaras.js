@@ -61,13 +61,12 @@ function BB8(x=0, y=0){
  this.cabezabb8.scale.z=0.5;
  this.cabezabb8.castShadow=true;
  this.cuerpo.castShadow=true;
-
 }
 
 BB8.prototype=new Agent();
 
 function Wall(size,x=0,y=0){
- THREE.Mesh.call(this,new THREE.BoxGeometry(size,size,size), new  THREE.MeshLambertMaterial()); 
+ THREE.Mesh.call(this,new THREE.BoxGeometry(size/4,size/4,size), new  THREE.MeshLambertMaterial()); 
  this.size=size;
  this.position.x=x;
  this.position.y=y;
@@ -79,7 +78,7 @@ Environment.prototype.setMap=function(map){
  for(var i=0;i<map.length;i++){
   for(var j=0;j<map.length;j++){
    if(map[i][j]==="x")
-    this.add(new Wall(1, j-offset,-(i-offset)));
+    this.add(new Wall(4, j-offset,-(i-offset)));
    else if(map[i][j]==="r")
     this.add(new BB8(j-offset,-(i-offset)));	
   }
@@ -91,17 +90,29 @@ BB8.prototype.sense=function(environment){
  var obstaculo = this.sensor.intersectObjects(environment.children,true);
  if ((obstaculo.length>0&&(obstaculo[0].distance<=1))){
   this.sensor.colision=true;
-  obstaculo[0].object.material=new THREE.MeshBasicMaterial({color:0xff0000});}
+  console.log(xr);
+  console.log(yr);
+  if(obstaculo[0].object.material.opacity!=0.8){
+   obstaculo[0].object.material=new THREE.MeshBasicMaterial({color:0xff0000});
+   obstaculo[0].object.material.opacity=0.8;
+   giro=0;}
+  else{
+   giro=1;
+   obstaculo[0].object.material.opacity=0.6;
+   }
+ }
  else
   this.sensor.colision=false;
 }
 
 BB8.prototype.plan = function(environment){
  this.actuator.commands=[];
-
-
- if(this.sensor.colision==true)
+ if(this.sensor.colision==true&&giro==1)
+  this.actuator.commands.push('RotarDerecha');
+ else if(this.sensor.colision==true&&giro==0)
   this.actuator.commands.push('RotarIzquierda');
+ else if(xr==11.499999999999352 && yr==13.500000000002016)
+  this.actuator.commands.push('Stop');
  else
   this.actuator.commands.push('Derecho');
 }
@@ -121,7 +132,6 @@ BB8.prototype.operations = {};
 BB8.prototype.operations.Derecho = function(robot,step){
  xr=robot.position.x;
  yr=robot.position.y;
-
  if(step==undefined)
   step=0.1;
  robot.position.x+=step*Math.cos(robot.rotation.z);
@@ -142,41 +152,44 @@ BB8.prototype.operations.RotarIzquierda = function(robot,angulo){
  }
  robot.rotation.z+=angulo;
 };
+
+BB8.prototype.operations.Stop = function(robot){
+ 
+};
  
 function setup(){
  var mapa = new Array();
-  mapa[0] = "xxxxxxxxxxxxxxxxxxxxx    xxxxxxxxxxx";
-  mapa[1] = "x                   x    x         x";
-  mapa[2] = "x                   x    x         x";
-  mapa[3] = "x                   x    x         x";
-  mapa[4] = "x                   x    x         x";
-  mapa[5] = "x    x    xxxxxxxxxxx    x    xxxxxx";
-  mapa[6] = "x    x    x              x         x";
-  mapa[7] = "x    x    x              x         x";
-  mapa[8] = "x    x    x              x         x";
-  mapa[9] = "x    x    x              x         x";
- mapa[10] = "x    x    x          xxxxx    x    x";
- mapa[11] = "x    x         x              x    x";
- mapa[12] = "x    x         x              x    x";
- mapa[13] = "x    x         x              x    x";
- mapa[14] = "x    x         x              x    x";
- mapa[15] = "x    xxxxxx    xxxxxxxxxxx    xxxxxx";
- mapa[16] = "x         x              x         x";
- mapa[17] = "x         x              x         x";
- mapa[18] = "x         x              x         x";
- mapa[19] = "x         x              x         x";
- mapa[20] = "x    xxxxxx    xxxxxx         x    x";
- mapa[21] = "x    x         x              x    x";
- mapa[22] = "x    x         x              x    x";
- mapa[23] = "x    x         x              x    x";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
- mapa[24] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
+  mapa[0] = "xxxxxxxxxxxxxxxxxxxxxxxxx   x";
+  mapa[1] = "x            x       x      x";
+  mapa[2] = "x            x       x      x";
+  mapa[3] = "x  xxxxxxxxxxx  x    x  xx  x";
+  mapa[4] = "x               x  xxx   x  x";
+  mapa[5] = "x               x  x     x  x";
+  mapa[6] = "xxxx  xxxxxxxxxxx  x     x  x";
+  mapa[7] = "x  x  x            xxxx  x  x";
+  mapa[8] = "r  x  x               x  x  x";
+  mapa[9] = "   x  xxxxxxxxxxxx    x  x  x";
+ mapa[10] = "   x        x         x  x  x";
+ mapa[11] = "x  x        x         x  x  x";
+ mapa[12] = "x  x    xxxxx    xxxxxx  x  x";
+ mapa[13] = "x  x    x             x  x  x";
+ mapa[14] = "x     xxx             x  x  x";
+ mapa[15] = "x     x     x  xxxxxxxx     x";
+ mapa[16] = "xxxxxxx     x  x            x";
+ mapa[17] = "x        x  x  x            x";
+ mapa[18] = "x        x  x  xxxxxxx   x  x";
+ mapa[19] = "x   xxxxxxxxx        x   x  x";
+ mapa[20] = "x   x                x   x  x";
+ mapa[21] = "x   x            xxxxx   x  x";
+ mapa[22] = "x   x   x        x   x   x  x";
+ mapa[23] = "x   xxxxx        x   x   x  x";
+ mapa[24] = "x   x            x       x  x";
+ mapa[25] = "x   x            x       xxxx";
+ mapa[26] = "xxxxxxxxxxxxxxx  xxxxxx     x";
+ mapa[27] = "x                           x";
+ mapa[28] = "x                           x";
+ mapa[29] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 
  entorno=new Environment();
@@ -184,20 +197,18 @@ function setup(){
 
  THREE.ImageUtils.crossOrigin = '';
  var textura = THREE.ImageUtils.loadTexture('http://francisgoba.github.io/rv/piso.jpg');
- var floor=new THREE.Mesh(new THREE.BoxGeometry(28,30,0.1), new THREE.MeshLambertMaterial({map:textura}));
+ var floor=new THREE.Mesh(new THREE.BoxGeometry(31,31,0.1), new THREE.MeshLambertMaterial({map:textura}));
 
  floor.position.z=-0.5;
- floor.position.x=-1.5;
- floor.position.y=0.5;
  iluminacion = new THREE.PointLight(0xffffff);
  iluminacion.position.z=20;
  iluminacion.position.y=10;
 
- camara1 = new THREE.OrthographicCamera( 35 / - 2, 35 / 2, 35 / 2, 35 / - 2, 10, 1000 );
+ camara1 = new THREE.OrthographicCamera( 31 / -2, 27 / 2, 31/ 2, 29/ - 2, 10, 1000 );
  camara1.position.z=50;
 
  camara2 = new THREE.PerspectiveCamera( );
- camara2.position.z=20;
+ camara2.position.z=5;
  
  renderer = new THREE.WebGLRenderer();
  renderer.setSize(window.innerHeight*0.95, window.innerHeight*0.95);
@@ -221,15 +232,16 @@ function loop(){
 
  camara2.position.x=xr;
  camara2.position.y=yr;
+ //camara2.lookAt(xr,yr);
 
  if(keyboard.pressed("P")||keyboard.pressed("p"))
-  renderer.render(entorno,camara1);
- else  
   renderer.render(entorno,camara2);
+ else  
+  renderer.render(entorno,camara1);
  
 }
 
-var entorno,iluminacion,robot,step,angulo,camara,renderer,xr,yr;
+var entorno,iluminacion,robot,step,angulo,camara,renderer,xr,yr,giro;
 var keyboard = new THREEx.KeyboardState();
 
 setup();
